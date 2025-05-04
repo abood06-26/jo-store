@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Login - LUGX</title>
+<link href="assets/css/templatemo-lugx-gaming.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-image: url('assets/images/banner-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+    .signup-box {
+      background-color: rgba(0,0,0,0.85);
+      padding: 40px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 400px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(111, 66, 193, 0.6);
+    }
+    .signup-box img.logo {
+      max-width: 180px;
+      margin-bottom: 20px;
+    }
+    .signup-box h2 {
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .signup-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+    }
+    .signup-box button {
+      width: 100%;
+      padding: 12px;
+      background-color: #6f42c1;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .signup-box button:hover {
+      background-color: #8b5ce2;
+    }
+    .signup-box a {
+      color: #aaa;
+      text-decoration: none;
+      display: block;
+      margin-top: 15px;
+    }
+  </style>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBn1JkPknJ2oz-oI9jwXWvMH4KEobDJhsk",
+    authDomain: "jo-store546.firebaseapp.com",
+    projectId: "jo-store546",
+    storageBucket: "jo-store546.firebasestorage.app",
+    messagingSenderId: "105814400443",
+    appId: "1:105814400443:web:4ac0b1e7aa82461b89f89e",
+    measurementId: "G-3450Q58RE1"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+</script>
+
+</head>
+<body>
+<div class="signup-box">
+<img class="logo" src="assets/images/logo.png"/><img alt="LUGX Logo" class="logo" src="assets/images/logo.png"/>
+<h2>Login to Your Account</h2>
+<form id="signup-form">
+</form>
+<input placeholder="Email Address" required="" type="email"/>
+<input placeholder="Password" required="" type="password"/>
+<button type="submit">Login</button>
+</div>
+<script>
+    document.getElementById('signup-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(userCredential => {{
+          alert("Account created successfully! Redirecting...");
+          setTimeout(() => window.location.href = "index.html", 1500);
+        }})
+        .catch(error => alert("Error: " + error.message));
+    });
+  </script>
+
+<!-- Firebase App (Core) -->
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"></script>
+<!-- Firebase Authentication -->
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js"></script>
+
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBn1JkPknJ2oz-oI9jwXWvMH4KEobDJhsk",
+    authDomain: "jo-store546.firebaseapp.com",
+    projectId: "jo-store546",
+    storageBucket: "jo-store546.firebasestorage.app",
+    messagingSenderId: "105814400443",
+    appId: "1:105814400443:web:4ac0b1e7aa82461b89f89e",
+    measurementId: "G-3450Q58RE1"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+</script>
+
+
+
+<script>
+  document.querySelector("form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.querySelector('input[type="email"]').value;
+    const password = document.querySelector('input[type="password"]').value;
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      alert("Login successful!");
+      // يمكنك التوجيه إلى صفحة أخرى هنا
+    } catch (error) {
+      alert("Error: " + error.message);
+    }
+  });
+</script>
+
+</body>
